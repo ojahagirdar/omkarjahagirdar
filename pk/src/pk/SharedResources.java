@@ -1,13 +1,13 @@
 package pk;
 
-public class SharedResource {
+public class SharedResources {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SharedResource1 r = new SharedResource1();
-		MyThread t1 = new MyThread(2,5,r);
-		MyThread t2 = new MyThread(3,5,r);
-		t1.start();
-		t2.start();
+		MyThread t4 = new MyThread(2,5,r);
+		MyThread t5 = new MyThread(3,5,r);
+		t4.start();
+		t5.start();
 	}
 
 }
