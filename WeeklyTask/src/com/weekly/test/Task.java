@@ -32,7 +32,6 @@ public class Task {
 			return count;
 		}
 
-		// gives the row number of first found empty cell in given column
 		public int getEmptyCellInCol(int c) {
 			for (int i = 0; i < 3; i++) {
 				if (A[i][c] == 0)
@@ -69,7 +68,7 @@ public class Task {
 			} else if (emptyCell == 1) {
 				cell1 = 0;
 				cell2 = 2;
-			} else { // emptyCell == 2
+			} else { 
 				cell1 = 0;
 				cell2 = 1;
 			}
@@ -84,12 +83,7 @@ public class Task {
 			}
 		}
 
-		/*
-		 * Three possible scenarios: 
-		 * 1) only one number in the column - leave 
-		 * 2) Two numbers in the column & not sorted - swap 
-		 * 3) Three numbers in the column - sort
-		 */
+		
 		private void sortColumn(int c) throws Exception {
 			if (this.getColCount(c) == 1) {
 				return;
@@ -123,9 +117,7 @@ public class Task {
 		return count;
 	}
 
-	/**
-	 * @param args
-	 */
+	
 	public static void main(String[] args) {
 		Node[] nodes = new Node[6];
 		for (int i = 0; i < 6; i++) {
@@ -213,7 +205,7 @@ public class Task {
 		sets.add(set5);
 		sets.add(set6);
 
-		// assigning elements to each set for each column
+		
 		for (int i = 0; i < 9; i++) {
 			List<Integer> li = columns.get(i);
 			for (int j = 0; j < 6; j++) {
@@ -227,7 +219,7 @@ public class Task {
 			}
 		}
 
-		// assign element from last column to random set
+		
 		List<Integer> lastCol = columns.get(8);
 		int randNumIndex = getRand(0, lastCol.size() - 1);
 		int randNum = lastCol.get(randNumIndex);
@@ -238,7 +230,7 @@ public class Task {
 
 		lastCol.remove(randNumIndex);
 
-		// 3 passes over the remaining columns
+	
 		for (int pass = 0; pass < 3; pass++) {
 			for (int i = 0; i < 9; i++) {
 				List<Integer> col = columns.get(i);
@@ -264,7 +256,7 @@ public class Task {
 			}
 		}
 
-		// one more pass over the remaining columns
+		
 		for (int i = 0; i < 9; i++) {
 			List<Integer> col = columns.get(i);
 			if (col.size() == 0)
@@ -288,19 +280,18 @@ public class Task {
 			}
 		}
 
-		// sort the internal sets
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 9; j++) {
 				Collections.sort(sets.get(i).get(j));
 			}
 		}
 
-		// got the sets - need to arrange in tickets now
+	
 		for (int setIndex = 0; setIndex < 6; setIndex++) {
 			List<List<Integer>> currSet = sets.get(setIndex);
 			Node currTicket = nodes[setIndex];
 
-			// fill first row
+			
 			for (int size = 3; size > 0; size--) {
 				if (currTicket.getRowCount(0) == 5)
 					break;
@@ -318,7 +309,7 @@ public class Task {
 				}
 			}
 
-			// fill second row
+			
 			for (int size = 2; size > 0; size--) {
 				if (currTicket.getRowCount(1) == 5)
 					break;
@@ -336,7 +327,7 @@ public class Task {
 				}
 			}
 
-			// fill third row
+			
 			for (int size = 1; size > 0; size--) {
 				if (currTicket.getRowCount(2) == 5)
 					break;
@@ -356,20 +347,18 @@ public class Task {
 		}
 
 		try {
-			// quick patch to ensure columns are sorted
+		
 			for (int i = 0; i < 6; i++) {
 				Node currTicket = nodes[i];
 				currTicket.sortColumns();
 			}
 		} catch (Exception e) {
-			// something wrong, not a P0...eating the exception
-			System.out.println(
-					"Note: there is a small probability your columns may not be sorted, it should not impact the gameplay");
-			System.out.println("Please create an issue in the github for investigation");
+			
+			System.out.println("Note: the");
+			System.out.println("1");
 			System.out.println(e.getMessage());
 		}
 
-		// print the tickets
 		for (int i = 0; i < 6; i++) {
 			Node currTicket = nodes[i];
 
